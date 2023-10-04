@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour
     private Player _player;
     private Laser _laser;
 
-    private float _canFire = -1;
-    private float _enemySpeed = 4f;
+    private float _canFire = -1.0f;
+    private float _enemySpeed = 4.0f;
     private float _fireRate;
     private bool _isCollided;
 
@@ -22,18 +22,17 @@ public class Enemy : MonoBehaviour
 
         _player = GameObject.Find("Player").GetComponent<Player>();
         if (_player == null)
-            Debug.LogError("MY ERROR: Player is NULL!! UIManager::Start()");
+            Debug.LogError("MY ERROR: _player is NULL!!! UIManager::Start()");
 
         _audioExplosionSource = GetComponent<AudioSource>();
         if (_audioExplosionSource == null)
-            Debug.LogError("MY ERROR: _audioExplosionSource is NULL!! Enemy::Start()");
+            Debug.LogError("MY ERROR: _audioExplosionSource is NULL!!! Enemy::Start()");
 
         _anim = GetComponent<Animator>();
         if (_anim == null) 
-            Debug.LogError("MY ERROR: _anim is NULL!! Enemy::Start()");
-
+            Debug.LogError("MY ERROR: _anim is NULL!!! Enemy::Start()");
     }
-    // Update is called once per frame
+
     void Update()
     {
         CalculateMovment();
@@ -48,7 +47,7 @@ public class Enemy : MonoBehaviour
             // Only if its not other Enemy who made the shooting -> KILL ENEMY.
             if (!_laser.GetIsEnemyLaser())
             {
-                _player.AddScore(10);
+                _player.AddToScore(10);
                 OnEnemyDeath();
                 Destroy(other.gameObject);
             }
@@ -85,11 +84,11 @@ public class Enemy : MonoBehaviour
     void ShotEnemyLaser(){
         if (Time.time > _canFire && !_isCollided)
         {
-            _fireRate = Random.Range(2f, 5f);
+            _fireRate = Random.Range(2.0f, 5.0f);
             _canFire = Time.time + _fireRate;
             GameObject enemyObject = Instantiate(_enemyLaserPrefab, transform.position, Quaternion.identity);
             if (enemyObject == null)
-                Debug.LogError("Enemy object is null!! Enemy::ShotEnemyLaser()");
+                Debug.LogError("Enemy object is null!!! Enemy::ShotEnemyLaser()");
             Laser[] enemyLaser = enemyObject.GetComponentsInChildren<Laser>();
 
             foreach (Laser laser in enemyLaser)

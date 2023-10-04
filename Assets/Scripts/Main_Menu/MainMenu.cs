@@ -12,13 +12,6 @@ public class MainMenu : MonoBehaviour
     private bool _isSingleMode;
 
     /// <summary>
-    /// Start is called before the first frame update.
-    /// </summary>
-    void Start()
-    {
-    }
-
-    /// <summary>
     /// Loads the Main Menu scene.
     /// </summary>
     public void LoadSinglePlayerGameBtn()
@@ -31,14 +24,6 @@ public class MainMenu : MonoBehaviour
     {
         SetIsSingleMode(false);
         SceneManager.LoadScene("Two_Players");
-    }
-
-    /// <summary>   
-    /// Update is called once per frame.
-    /// </summary>
-    void Update()
-    {
-        // Any periodic update logic can be placed here if required.
     }
 
     public void SetIsSingleMode(bool _isSingle)

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class Laser : MonoBehaviour
 {
-    private readonly float _laserSpeed = 8f;
+    private readonly float _laserSpeed = 8.0f;
     private bool _isEnemy = false;
     private Player _player;
 

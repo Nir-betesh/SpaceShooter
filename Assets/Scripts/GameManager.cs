@@ -24,12 +24,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _pauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Panel")?.gameObject;
+        _pauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Panel").gameObject;
+        if (_pauseMenu == null)
+            Debug.LogError("_pauseMenu is NULL! GameManager::start()");
+
         _spawnManager = GameObject.Find("Spawn Manager")?.GetComponent<SpawnManager>();
+        if (_spawnManager == null)
+            Debug.LogError("_spawnManager is NULL! GameManager::start()");
+
         _pausedAnimator = GameObject.Find("Pause Menu Panel").GetComponent<Animator>();
-        _pausedAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        if (_pausedAnimator == null)
+            Debug.LogError("_pausedAnimator is NULL! GameManager::start()");
+
         _gameMusic = GameObject.Find("Audio Manager");
-        //_spawnManager.StartSpawning();
+        if (_gameMusic == null)
+            Debug.LogError("_gameMusic is NULL! GameManager::start()");
+
+        _pausedAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     /// <summary>
@@ -89,5 +100,4 @@ public class GameManager : MonoBehaviour
             _pausedAnimator.SetBool("isPaused", isGamePause);
         _isPause = isGamePause;
     }
-
 }

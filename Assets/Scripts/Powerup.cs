@@ -30,12 +30,12 @@ public class Powerup : MonoBehaviour
         {
             AudioSource audioSource = gameObject.AddComponent<AudioSource>();
             if (audioSource == null)
-                Debug.LogError("MY ERRROR: audioSource is null! OnTriggerEnter2D()::Powerup");
+                Debug.LogError("MY ERRROR: audioSource is NULL!!! OnTriggerEnter2D()::Powerup");
             audioSource.clip = _audioPowerupClip;
 
             Player player = other.GetComponent<Player>();
             if (player == null)
-                Debug.LogError("MY ERROR: player is NULL! Powerup::OnTriggerEnter2D()");
+                Debug.LogError("MY ERROR: player is NULL!!! Powerup::OnTriggerEnter2D()");
             else
             {
                 switch (_powerupID)

@@ -34,63 +34,56 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         if (_spawnManager == null)
-            Debug.LogError("MY ERROR: _spawnManager is NULL! (Player Start())");
+            Debug.LogError("MY ERROR: _spawnManager is NULL!!! Player::Start()");
         
         _UImanager = GameObject.Find("Canvas").GetComponent<UIManager>();
         if (_UImanager == null)
-            Debug.LogError("MY ERROR: _UImanager is NULL! (Player Start())");
+            Debug.LogError("MY ERROR: _UImanager is NULL!!! Player::Start()");
 
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         if (_gameManager == null)
-            Debug.LogError("MY ERROR: _gameManager is NULL! (Player Start())");
+            Debug.LogError("MY ERROR: _gameManager is NULL!!! Player::Start()");
 
         _audioLaserSource = GetComponent<AudioSource>();
         if (_audioLaserSource == null)
-            Debug.LogError("MY ERROR: _audioLaseSource is NULL!(Player Start()");
-        else // Set clip to variable
+            Debug.LogError("MY ERROR: _audioLaseSource is NULL!!! Player::Start()");
+        else
             _audioLaserSource.clip = _audioLaserClip;
     }
 
     void Update()
     {
         calculateMovment();
-        if (_isPlayerOne)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if (_isPlayerOne && Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
                 FireLaser();
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) && Time.time > _canFire)
+        else if (!_isPlayerOne && Input.GetKeyDown(KeyCode.KeypadEnter) && Time.time > _canFire)
                 FireLaser();
-        }
     }
 
     // Player Movment and bounderies
     void calculateMovment()
     {
         // ------------- Set Players boundries -------------
+        Vector3[] directions = { Vector3.left, Vector3.down, Vector3.right, Vector3.up};
         float currX = transform.position.x;
         float currY = transform.position.y;
         float xBounderyLeft  = -9.3f;
         float xBounderyRight = 9.3f;
         float yBounderyDown  = -4.6f;
-        float yBounderyUp    = 2f;
+        float yBounderyUp    = 2.0f;
 
-        // Set boundries - Y axis - Clamp means range. SC
+        // Set boundrieson y axis.
         transform.position = new Vector3(currX, Mathf.Clamp(currY, yBounderyDown, yBounderyUp), 0);
 
-        // Set boundries - X axis - Teleport from side to side.
+        // X axis - Teleport from side to side.
         if (transform.position.x >= xBounderyRight)
             transform.position = new Vector3(xBounderyLeft, currY, 0);
         else if (transform.position.x <= xBounderyLeft)
             transform.position = new Vector3(xBounderyRight, currY, 0);
 
         // ------------- Control players movements -------------
-        Vector3[] directions = { Vector3.left, Vector3.down, Vector3.right, Vector3.up};
         if (_isPlayerOne)
         {
             KeyCode[] PlayerKeys = {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.W};
@@ -111,7 +104,7 @@ public class Player : MonoBehaviour
             transform.Translate(direction * _playerSpeed * Time.deltaTime);
     }
 
-    // Shoot laser with space key
+    // Fire player laser
     void FireLaser()
     {
         _canFire = Time.time + _fireRate;
@@ -135,9 +128,9 @@ public class Player : MonoBehaviour
                 _playerDamageLeft.SetActive(true);
 
             if (_isPlayerOne)
-                AddScore(-10);
+                AddToScore(-10);
             else
-                GameObject.Find("Player").GetComponent<Player>().AddScore(-10);
+                GameObject.Find("Player").GetComponent<Player>().AddToScore(-10);
 
             if (_playerLives > -1)
                 _UImanager.UpdateLives(_playerLives, _isPlayerOne);
@@ -172,7 +165,7 @@ public class Player : MonoBehaviour
     {
         return _playerScore;
     }
-    public void AddScore(int ScoreToAdd)
+    public void AddToScore(int ScoreToAdd)
     {
         _playerScore += ScoreToAdd;
         _UImanager.UpdateScore(_playerScore);

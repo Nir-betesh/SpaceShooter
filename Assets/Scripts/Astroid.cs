@@ -8,7 +8,7 @@ public class Astroid : MonoBehaviour
 
     private Player player;
     private SpawnManager _spawnManager;
-    private readonly float yBoundryDown = -7f;
+    private readonly float yBoundryDown = -7.0f;
     private readonly int rotationSpeed = 45;
     private readonly int _astroidSpeed = 3;
     private int _hitsCounter = 5;
@@ -17,11 +17,11 @@ public class Astroid : MonoBehaviour
     {
         _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         if (_spawnManager == null)
-            Debug.LogError("MY ERROR: _spawnManager is NULL! Astroid::Start()");
+            Debug.LogError("MY ERROR: _spawnManager is NULL!!! Astroid::Start()");
 
         player = GameObject.Find("Player").GetComponent<Player>();
-        if (_spawnManager == null)
-            Debug.LogError("MY ERROR: player is NULL! Astroid::OnTriggerEnter2D()");
+        if (player == null)
+            Debug.LogError("MY ERROR: player is NULL!!! Astroid::start()");
     }
 
     void Update()
@@ -34,6 +34,7 @@ public class Astroid : MonoBehaviour
         // Rotate the astroid
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
 
+        // Astroid direction
         transform.Translate(Vector3.down * Time.deltaTime * _astroidSpeed, Space.World);
         if (transform.position.y <= yBoundryDown)
             Destroy(this.gameObject);
@@ -48,17 +49,26 @@ public class Astroid : MonoBehaviour
             {
                 Instantiate(_explosinPrefab, transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
-                player.AddScore(50);
+                player.AddToScore(50);
                 Destroy(this.gameObject, 0.25f);
             }
             else
                 Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("Player") || other.CompareTag("Player Two"))
+        if (other.CompareTag("Player"))
         {
             player.SetLives(1);
             player.Damage();
+        }
+        else if(other.CompareTag("Player Two"))
+        {
+            Player playerTwo = GameObject.Find("Player Two").GetComponent<Player>();
+            if (playerTwo == null)
+                Debug.LogError("MY ERROR: playerTwo is NULL!!! Astroid::start()");
+
+            playerTwo.SetLives(1);
+            playerTwo.Damage();
         }
     }
 }

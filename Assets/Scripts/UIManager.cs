@@ -7,6 +7,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _highScoreText;
     [SerializeField] private Text _gameOverText;
     [SerializeField] private Text _backToMainMenu;
@@ -24,10 +25,9 @@ public class UIManager : MonoBehaviour
         _scoreText.gameObject.SetActive(true);
         _scoreText.text = "Score: 0";
         InitialHighScore();
-        _gameOverText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         if (_gameManager == null)
-            Debug.LogError("_gameManager is NULL! UIManager:: start()");
+            Debug.LogError("_gameManager is NULL!!! UIManager::start()");
     }
 
     public void UpdateScore(int Score)
@@ -41,12 +41,14 @@ public class UIManager : MonoBehaviour
         _highScoreText.text = "Best Score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
-    void updateHighScore()
+    void UpdateHighScore()
     {
         Player player = GameObject.Find("Player").GetComponent<Player>();
+        if (player == null)
+            Debug.LogError("player is NULL!!! UIManager::UpdateHighScore()");
+
         if (player.GetScore() > PlayerPrefs.GetInt("HighScore", 0))
             PlayerPrefs.SetInt("HighScore", player.GetScore());
-        
     }
 
     public void UpdateLives(int currLives, bool _isPlayerOne)
@@ -59,8 +61,6 @@ public class UIManager : MonoBehaviour
         if (currLives <= 0)
             GameOverSequence();
     }
-
-
 
     IEnumerator GameOverFlicker()
     {
@@ -75,14 +75,10 @@ public class UIManager : MonoBehaviour
 
     void GameOverSequence()
     {
-        // Set active component text
-        updateHighScore();
+        _gameOverPanel.SetActive(true);
+        UpdateHighScore();
         StartCoroutine(GameOverFlicker());
         _gameManager.SetIsGameOver(true);
-        _restartText.gameObject.SetActive(true);
-        _gameOverText.gameObject.SetActive(true);
-        _backToMainMenu.gameObject.SetActive(true);
-
     }
 }
 

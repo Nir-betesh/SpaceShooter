@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
 
            // Orgenaize the spawnded enemy under 'Spawn Manager' file in Hirearchy.
            newEnemy.transform.parent = _enemyContainer.transform;
-           yield return new WaitForSeconds(Random.Range(2f, 6f));
+           yield return new WaitForSeconds(Random.Range(2.0f, 6.0f));
         } 
     }
     IEnumerator SpawnPowerupsRoutine()
@@ -50,23 +50,23 @@ public class SpawnManager : MonoBehaviour
         while (_isSpawning == true)
         {
             float xAxis = Random.Range(xBounderyRight, xBounderyLeft);
-            int randPowerup = Random.Range(0,3);
+            int randPowerup = Random.Range(0, 3);
             Vector3 posToSpawn = new Vector3(xAxis, yBoundryUp, 0);
             Instantiate(powerups[randPowerup], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 7));
+            yield return new WaitForSeconds(Random.Range(3.0f, 7.0f));
         }
     }
 
     IEnumerator SpawnAstroids()
     {
-        yield return new WaitForSeconds(Random.Range(15f, 30f));
+        yield return new WaitForSeconds(Random.Range(10.0f, 15.0f));
 
         while (_isSpawning)
         {
             float xAxis = Random.Range(xBounderyRight, xBounderyLeft);
             Vector3 posToSpawn = new Vector3(xAxis, yBoundryUp, 0);
             Instantiate(_astroid, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(15f, 30f));
+            yield return new WaitForSeconds(Random.Range(15.0f, 30.0f));
         }
     }
 
