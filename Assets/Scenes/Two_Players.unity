@@ -2846,7 +2846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -261, y: 184}
+  m_AnchoredPosition: {x: -261, y: 236}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1608086482
@@ -3264,8 +3264,6 @@ MonoBehaviour:
   _gameOverPanel: {fileID: 224266298}
   _highScoreText: {fileID: 1569962797}
   _gameOverText: {fileID: 218028775}
-  _backToMainMenu: {fileID: 0}
-  _restartText: {fileID: 0}
   _scoreText: {fileID: 963233440}
   _currLivesImg: {fileID: 1437378198}
   _currLivesImgTwo: {fileID: 498339946}

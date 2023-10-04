@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         if (_gameMusic == null)
             Debug.LogError("_gameMusic is NULL! GameManager::start()");
 
+
         _gameOverAnimator = GameObject.Find("Game Over Panel").GetComponent<Animator>();
         if (_gameOverAnimator == null)
             Debug.LogError("_gameOverAnimator is NULL! GameManager::start()");
