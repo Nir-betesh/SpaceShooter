@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject _gameMusic;
     private SpawnManager _spawnManager;
     private Animator _pausedAnimator;
+    private Animator _gameOverAnimator;
 
     private bool _isGameOver = false;
     private bool _isPause = false;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _pauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Panel").gameObject;
+        _pauseMenu = GameObject.Find("Pause Menu Panel").gameObject;
         if (_pauseMenu == null)
             Debug.LogError("_pauseMenu is NULL! GameManager::start()");
 
@@ -32,14 +33,18 @@ public class GameManager : MonoBehaviour
         if (_spawnManager == null)
             Debug.LogError("_spawnManager is NULL! GameManager::start()");
 
-        _pausedAnimator = GameObject.Find("Pause Menu Panel").GetComponent<Animator>();
-        if (_pausedAnimator == null)
-            Debug.LogError("_pausedAnimator is NULL! GameManager::start()");
-
         _gameMusic = GameObject.Find("Audio Manager");
         if (_gameMusic == null)
             Debug.LogError("_gameMusic is NULL! GameManager::start()");
 
+        _gameOverAnimator = GameObject.Find("Game Over Panel").GetComponent<Animator>();
+        if (_gameOverAnimator == null)
+            Debug.LogError("_gameOverAnimator is NULL! GameManager::start()");
+        _gameOverAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+        _pausedAnimator = GameObject.Find("Pause Menu Panel").GetComponent<Animator>();
+        if (_pausedAnimator == null)
+            Debug.LogError("_pausedAnimator is NULL! GameManager::start()");
         _pausedAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
@@ -77,6 +82,8 @@ public class GameManager : MonoBehaviour
     public void SetIsGameOver(bool answer)
     {
         _isGameOver = answer;
+        if (answer == true)
+            _gameOverAnimator.SetBool("isGameOverPanelActive", true);
     }
 
     public bool IsSingleMode()

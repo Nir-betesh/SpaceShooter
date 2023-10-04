@@ -10,8 +10,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private TextMeshProUGUI _highScoreText;
     [SerializeField] private Text _gameOverText;
-    [SerializeField] private Text _backToMainMenu;
-    [SerializeField] private Text _restartText;
     [SerializeField] private Text _scoreText;
     [SerializeField] private Image _currLivesImg;
     [SerializeField] private Image _currLivesImgTwo;
