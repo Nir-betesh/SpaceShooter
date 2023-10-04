@@ -156,8 +156,6 @@ MonoBehaviour:
   _gameOverPanel: {fileID: 943448063}
   _highScoreText: {fileID: 700664166}
   _gameOverText: {fileID: 1660444990}
-  _backToMainMenu: {fileID: 1441811080}
-  _restartText: {fileID: 420037929}
   _scoreText: {fileID: 1597885672}
   _currLivesImg: {fileID: 1599562027}
   _currLivesImgTwo: {fileID: 0}
@@ -1423,13 +1421,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943448064}
+  - component: {fileID: 943448065}
   m_Layer: 5
   m_Name: Game Over Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &943448064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1450,9 +1449,28 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 542}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &943448065
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943448063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ed5f825e50651c4ebc569ce48bbbb1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
