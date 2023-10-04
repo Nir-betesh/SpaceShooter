@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private bool _isSingleMode;
+    [SerializeField] GameObject _infoPanel;
+    private bool _isPressedInfo  = false;
 
     /// <summary>
     /// Loads the Main Menu scene.
@@ -24,6 +26,20 @@ public class MainMenu : MonoBehaviour
     {
         SetIsSingleMode(false);
         SceneManager.LoadScene("Two_Players");
+    }
+    
+    public void InformationBtn()
+    {
+        if (!_isPressedInfo)
+        {
+            _infoPanel.SetActive(true);
+            _isPressedInfo = true;
+        }
+        else
+        {
+            _infoPanel.SetActive(false);
+            _isPressedInfo = false;
+        }
     }
 
     public void SetIsSingleMode(bool _isSingle)
