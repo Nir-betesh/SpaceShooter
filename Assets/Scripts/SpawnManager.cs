@@ -6,8 +6,10 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _enemyContainer;
+    [SerializeField] private GameObject _starsContainer;
     [SerializeField] private GameObject _astroid;
     [SerializeField] private GameObject[] powerups;
+    [SerializeField] private GameObject[] stars;
 
     private bool _isSpawning = true;
     private readonly float yBoundryUp = 6.5f;
@@ -25,6 +27,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnAstroids());
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupsRoutine());
+        StartCoroutine(SpawnStars());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -53,6 +56,7 @@ public class SpawnManager : MonoBehaviour
             int randPowerup = Random.Range(0, 3);
             Vector3 posToSpawn = new Vector3(xAxis, yBoundryUp, 0);
             Instantiate(powerups[randPowerup], posToSpawn, Quaternion.identity);
+
             yield return new WaitForSeconds(Random.Range(3.0f, 7.0f));
         }
     }
@@ -68,6 +72,21 @@ public class SpawnManager : MonoBehaviour
             Instantiate(_astroid, posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(15.0f, 30.0f));
         }
+    }
+
+    IEnumerator SpawnStars()
+    {
+        while (_isSpawning)
+        {
+            float xAxis = Random.Range(xBounderyRight, xBounderyLeft);
+            int randStar = Random.Range(0, 3);
+            Vector3 posToSpawn = new Vector3(xAxis, yBoundryUp, 0);     
+            GameObject newStar = Instantiate(stars[randStar], posToSpawn, Quaternion.identity);
+            // Orgenaize the spawnded enemy under 'Spawn Manager' file in Hirearchy.
+            newStar.transform.parent = _starsContainer.transform;
+            yield return new WaitForSeconds(Random.Range(1.0f, 4.0f));
+        }
+
     }
 
     public void StopSpawning()

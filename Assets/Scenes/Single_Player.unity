@@ -327,8 +327,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1680262585
-  m_SortingLayer: 2
+  m_SortingLayerID: 1355116803
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1b4a8fdd39d3a45d0a9ee484ad6800ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -960,7 +960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639982758}
   m_Layer: 0
-  m_Name: Enemy_Container
+  m_Name: Enemy Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1293,6 +1293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 836719571}
   - component: {fileID: 836719570}
+  - component: {fileID: 836719572}
   m_Layer: 0
   m_Name: Space Background Overlay
   m_TagString: Untagged
@@ -1358,12 +1359,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836719569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0.09, z: 0}
   m_LocalScale: {x: 1.1141, y: 1.1141, z: 1.1141}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &836719572
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836719569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dfa21923b1d19ce4c8da55cd0f918464, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &882863586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1748,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 351499515}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1229297125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229297126}
+  m_Layer: 0
+  m_Name: Stars Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229297126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229297125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.979065, y: 1.361908, z: 0}
+  m_LocalScale: {x: 0.64799327, y: 0.64799327, z: 0.64799327}
+  m_Children: []
+  m_Father: {fileID: 1562230635}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341567022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,11 +2092,16 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 1550363536862700340, guid: e369764c7edd71f47abd64895a6276ba,
     type: 3}
   _enemyContainer: {fileID: 639982757}
+  _starsContainer: {fileID: 1229297125}
   _astroid: {fileID: 779116612805336941, guid: d901a5ebd308818428faa1965a82fa72, type: 3}
   powerups:
   - {fileID: 7904382162211184476, guid: 58746a69f93713d4b855b7c362f06fea, type: 3}
   - {fileID: 7499785102021007998, guid: 11b5569241faa484e897ca6d35476321, type: 3}
   - {fileID: 4100265171688186575, guid: 2cb8b4ff4a7af5b49b25b9bcd94a6fd5, type: 3}
+  stars:
+  - {fileID: 5715263023361739129, guid: 17ddc5ee6e4b561488cfb6fd51414fe5, type: 3}
+  - {fileID: 6400007881705643801, guid: 97761e1be03025241aeb8b2964827ed0, type: 3}
+  - {fileID: 4050327523990733728, guid: 7f3da58f47a1a4341bfb7f72e4048b75, type: 3}
 --- !u!4 &1562230635
 Transform:
   m_ObjectHideFlags: 0
@@ -2059,6 +2114,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 639982758}
+  - {fileID: 1229297126}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
