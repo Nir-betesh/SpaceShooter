@@ -1,7 +1,3 @@
-Sure, I can help you draft a README file for your Space Shooter game. Here's a simple template you can use and expand upon:
-
----
-
 # Space Shooter Game
 
 Welcome to the Space Shooter Game repository! This exciting arcade game challenges you to navigate a spacecraft through the cosmos, dodging obstacles and defeating enemies to earn the highest score possible.
@@ -19,7 +15,7 @@ To play the Space Shooter Game, follow these steps:
 ## How to Play
 
 - **Start the Game**: Double-click the game executable.
--- **Choose game mode**: Single player or two players.
+- **Choose game mode**: Single player or two players.
 
 ## **Game Controls**
 
@@ -36,7 +32,6 @@ To play the Space Shooter Game, follow these steps:
   - **Move up**: Down arrow
   - **Move Down**: Up arrow
   - **Shoot**: Right Enter key
-
 
 ## Contributing
 
